@@ -1,0 +1,140 @@
+﻿<phone:PhoneApplicationPage x:Class="DnB.WindowsPhone.PageStart"
+                            x:Name="Page"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            FontFamily="{StaticResource PhoneFontFamilyLight}"
+                            FontSize="{StaticResource PhoneFontSizeLarge}"
+                            Foreground="White"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="#202530"
+                            shell:SystemTray.ForegroundColor="White">
+    
+    <phone:PhoneApplicationPage.Resources>
+
+        <Style x:Key="RadListPickerPopupStyleWrap"
+               TargetType="telerikPrimitives:RadDataBoundListBox">
+            <Setter Property="Margin"
+                    Value="-15,-25,0,0" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="Background"
+                    Value="Black" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource PhoneFontSizeLarge}" />
+        </Style>
+
+        <Style x:Key="PopupHeaderStyle"
+               TargetType="ContentControl">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+        </Style>
+
+
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid>
+
+        <Border Background="#31363E"
+                Padding="15,25">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#202530"
+                        BorderThickness="2"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        Margin="0,0,10,20">
+                    <Image Width="100"
+                           Source="Assets/ApplicationIcon.png" />
+                </Border>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Text="Take a look around"
+                           FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+                           FontSize="{StaticResource PhoneFontSizeLarge}"
+                           Foreground="#717687" />
+
+                <StackPanel Grid.Row="2"
+                            Grid.ColumnSpan="2">
+                    <TextBlock Text="Find target audience"
+                               FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+
+                    <TextBlock Margin="12,0,12,-12"
+                               Text="Category"
+                               Foreground="#717687" />
+                    <telerik:RadListPicker x:Name="LstCategory"
+                                           DisplayMemberPath="Name"
+                                           SelectedIndex="{Binding StateSelectedIndex, ElementName=Page}"
+                                           PopupHeaderStyle="{StaticResource PopupHeaderStyle}"
+                                           Background="White"
+                                           Foreground="Black"
+                                           PopupStyle="{StaticResource RadListPickerPopupStyleWrap}" />
+
+                    <TextBlock Margin="12,0,12,-12"
+                               Text="City"
+                               Foreground="#717687" />
+                    <TextBox x:Name="TxtCity"
+                             Text="{Binding City, ElementName=Page, Mode=TwoWay}" />
+
+                    <TextBlock Margin="12,0,12,-12"
+                               Text="State"
+                               Foreground="#717687" />
+                    <telerik:RadListPicker x:Name="LstStates"
+                                           DisplayMemberPath="DisplayName"
+                                           SelectedItem="{Binding SelectedItem, ElementName=Page, Mode=TwoWay}"
+                                           PopupHeaderStyle="{StaticResource PopupHeaderStyle}"
+                                           Background="White"
+                                           Foreground="Black"
+                                           PopupStyle="{StaticResource RadListPickerPopupStyleWrap}" />
+                </StackPanel>
+            </Grid>
+
+        </Border>
+
+        <Border Visibility="{Binding LoadingVisibility, ElementName=Page, FallbackValue=Collapsed}"
+                Background="#BB000000">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Loading..."
+                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5" />
+                <ProgressBar IsIndeterminate="True" />
+            </StackPanel>
+        </Border>
+        
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#AA202530"
+                              ForegroundColor="White">
+            <shell:ApplicationBarIconButton IconUri="Assets/appbar.magnify.png"
+                                            Text="search"
+                                            Click="SearchButtonClick" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,57 @@
+﻿<Application x:Class="DnB.WindowsPhone.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+             xmlns:local="clr-namespace:DnB.WindowsPhone">
+
+    <Application.ApplicationLifetimeObjects>
+        
+        <shell:PhoneApplicationService Launching="Application_Launching"
+                                       Closing="Application_Closing"
+                                       Activated="Application_Activated"
+                                       Deactivated="Application_Deactivated" />
+        
+    </Application.ApplicationLifetimeObjects>
+
+    <Application.Resources>
+
+        <local:LocalizedStrings x:Key="LocalizedStrings" />
+
+        <SolidColorBrush x:Key="NormalRemoteButtonBorderBrush"
+                         Color="#FF3B3B3E" />
+
+        <LinearGradientBrush x:Key="NormalCircleRemoteButtonBackgroundBrush"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
+            <GradientStop Color="#C00601"
+                          Offset="0" />
+            <GradientStop Color="#EE0111"
+                          Offset=".1" />
+            <GradientStop Color="#F31601"
+                          Offset="1" />
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="PressedRemoteButtonBorderBrush"
+                         Color="#FF78787A" />
+
+        <LinearGradientBrush x:Key="PressedRemoteButtonBackgroundBrush"
+                             StartPoint="0,0"
+                             EndPoint="0,1">
+            <GradientStop Color="#88FFFFFF"
+                          Offset="0" />
+            <GradientStop Color="Transparent"
+                          Offset=".5" />
+            <GradientStop Color="#88FFFFFF"
+                          Offset="1" />
+        </LinearGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="BorderBrush"
+                    Value="White" />
+        </Style>
+
+    </Application.Resources>
+
+</Application>

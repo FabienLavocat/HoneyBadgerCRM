@@ -1,0 +1,52 @@
+﻿<phone:PhoneApplicationPage x:Class="DnB.WindowsPhone.PageSearch"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            FontFamily="{StaticResource PhoneFontFamilyLight}"
+                            FontSize="{StaticResource PhoneFontSizeLarge}"
+                            Foreground="White"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="#202530"
+                            shell:SystemTray.ForegroundColor="White">
+
+    <Border Background="#31363E"
+            Padding="15,25">
+        <StackPanel>
+            <TextBlock Text="Lead Search"
+                       FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+
+            <TextBlock Margin="12,25,12,-12"
+                       Text="City"
+                       Foreground="#717687" />
+            <TextBox />
+            
+            <TextBlock Margin="12,0,12,-12"
+                       Text="State"
+                       Foreground="#717687" />
+            <toolkit:ListPicker x:Name="LstStates"
+                                Background="White"
+                                Foreground="Black" />
+            
+            <TextBlock Margin="12,0,12,-12"
+                       Text="Zip Code"
+                       Foreground="#717687" />
+            <TextBox />
+        </StackPanel>
+    </Border>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#AA202530">
+            <shell:ApplicationBarIconButton IconUri="Assets/appbar.magnify.png"
+                                            Text="search"
+                                            Click="ButtonSearchClick" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
